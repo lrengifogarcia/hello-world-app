@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: mywebapp-container
-        image: acrmmtest01.azurecr.io/mywebapp:v1
+        image: acrmmtest01.azurecr.io/mywebapp:v2
         ports:
         - containerPort: 5000  # O 5000 para Flask
         volumeMounts:
