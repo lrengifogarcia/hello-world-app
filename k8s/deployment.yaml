@@ -17,3 +17,14 @@ spec:
         image: acrmmtest01.azurecr.io/mywebapp:v1
         ports:
         - containerPort: 5000  # O 5000 para Flask
+        volumeMounts:
+        - name: secrets-store-inline
+          mountPath: "/mnt/secrets" # Directorio donde se montarán los secretos
+          readOnly: true
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "azure-kvname"  # Este debe coincidir con el nombre del SecretProviderClass que definiste
